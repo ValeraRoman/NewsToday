@@ -13,22 +13,22 @@ class News{
         var status: String
         var totalResults: Int
         var articles: [Articles]
-       
+        
         enum CodingKeys: String, CodingKey {
-        case status, totalResults, articles
+            case status, totalResults, articles
         }
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
+            
             self.status = try container.decode(String.self, forKey: .status)
             self.totalResults = try container.decode(Int.self, forKey: .totalResults)
             self.articles = try container.decode([Articles].self, forKey: .articles).sorted { $0.publishedAt > $1.publishedAt
+            }
+            
         }
-
-        }
-  
+        
     }
-
+    
     struct Articles:Codable {
         var source: Source
         var author: String?
@@ -47,19 +47,9 @@ class News{
     
     //MARK: - Reference
     
-var articleArray: [Articles] = []
- var sourceArray: [Source] = []
-//    var totalResults = 0
-//    var author = ""
-//    var title = ""
-//    var description = ""
-//    var url = ""
-//    var urlToImage = ""
-//    var publishedAt = ""
-//    var content = ""
-  
-//    var sourceName = ""
-//    var name = ""
+    var articleArray: [Articles] = []
+    var sourceArray: [Source] = []
+    
     
     var result: News.Returned?
     var category = "business"
@@ -68,7 +58,7 @@ var articleArray: [Articles] = []
     func urlString() -> String {
         return "http://newsapi.org/v2/top-headlines?country=\(self.country)&category=\(self.category)&apiKey=12258eebf98940058e2d367e9291f620"
     }
- // MARK: - Parsing
+    // MARK: - Parsing
     
     func getData(completed: @escaping ()->()){
         
@@ -85,25 +75,8 @@ var articleArray: [Articles] = []
             }
             do {
                 let returned = try JSONDecoder().decode(Returned.self, from: data!)
-
+                
                 self.result = returned
-                
-                
-
-//                print("Here is what was returned \(returned)")
-//                var articleArrays: [Articles] = []
-//                self.totalResults = returned.totalResults
-//                self.author = returned.articles[0].author ?? ""
-//                self.title = returned.articles[0].title
-//                self.description = returned.articles[0].description ?? ""
-//                self.url = returned.articles[0].url
-//                self.urlToImage = returned.articles[0].urlToImage ?? ""
-//                self.content = returned.articles[0].content ?? ""
-//                articleArrays = articleArrays + returned.articles
-//                self.name = returned.articles[0].source.name ?? ""
-//                let sourceArray = Source(name: self.name)
-//                self.articleArray.append(contentsOf: articleArrays)
-//                self.sourceArray.append(sourceArray)
             } catch {
                 print("JSON ERROR \(error)")
             }

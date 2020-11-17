@@ -16,7 +16,6 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var publishedAtLabel: UILabel!
-    @IBOutlet weak var sourceLabel: UILabel!
     
     
     
@@ -25,15 +24,7 @@ class ArticleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//       article.getData{
-//            DispatchQueue.main.async {
-//                self.titleLabel.text = self.article.title
-//                self.authorLabel.text = self.article.author
-//                self.descriptionLabel.text = self.article.description
-//                self.publishedAtLabel.text = self.article.publishedAt
-//            }
-//          
-//        }
+
         
     }
     

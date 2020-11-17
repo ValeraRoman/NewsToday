@@ -115,7 +115,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArticleTableViewCell
         let article = self.news.result?.articles[indexPath.row]
         
-        cell.sourceLabel.text = article?.source.name
         cell.descriptionLabel.text = article?.description
         cell.titleLabel.text = article?.title
         cell.authorLabel.text = article?.author
